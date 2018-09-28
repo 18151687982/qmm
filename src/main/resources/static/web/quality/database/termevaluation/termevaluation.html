@@ -1,0 +1,43 @@
+
+<h3>学年学期维护
+    <button style="width:auto;float:right;margin-right:2px;" type="button" ng-click="addTerm()" class="btn btn-labeled btn-success">
+               <span class="btn-label"><i class="fa fa-plus"></i>
+               </span>新增学年学期</button>
+</h3>
+<div>
+    <table class="table table-striped">
+        <tr class="active">
+            <td><b>学年学期编号</b></td>
+            <td><b>学年学期名称</b></td>
+            <td><b>学年学期打印名称</b></td>
+            <td><b>学期开始日期</b></td>
+            <td><b>学期结束日期</b></td>
+            <td><b>学期状态</b></td>
+            <td><b>开关</b></td>
+        </tr>
+        <tr class="active" ng-repeat="term in terms">
+            <td>{{term.termNo}}</td>
+            <td>{{term.termName}}</td>
+            <td>{{term.termPrintName}}</td>
+            <td>{{term.termStartdate}}</td>
+            <td>{{term.termEnddate}}</td>
+            <td>
+                <label style="float:left" class="switch switch-lg">
+                <input type="checkbox" ng-model="term.termStatus" ng-checked="term.termStatus == 1" ng-click="openTermSwitch(term)" ng-true-value="1" ng-false-value="0" />
+                <span></span>
+                </label>
+            </td>
+            <td>
+                <button ng-click="termsetting(term.termNo)" type="button" class="btn btn-sm btn-warning">
+                    <em class="fa fa-edit"></em>
+                </button>
+            </td>
+        </tr>
+    </table>
+    <nav aria-label="...">
+        <ul class="pagination">
+            <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+        </ul>
+    </nav>
+</div>

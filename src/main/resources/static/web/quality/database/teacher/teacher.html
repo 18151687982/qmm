@@ -1,0 +1,72 @@
+
+<h3>教工维护</h3>
+<div class="row">
+<div class="col-md-4">
+
+    <select type="button" style="width:auto;float:left;" class="form-control" data-toggle="dropdown"
+            ng-init="selectedName = names[0]" ng-model="selectedName" ng-options="x for x in names" ng-change="typeChange(selectedName)">
+    </select>
+    <select style="width:auto;float:left;" class="form-control" data-toggle="dropdown" ng-model="depNo" ng-change="teacherdepNoChanged(depNo)">
+        <option ng-repeat="department in departments" value="{{department.depNo}}">{{department.depName}}</option>
+    </select>
+
+</div>
+<div class="col-md-3">
+    <div style="width:auto;float:left;" class="input-group">
+        <input type="text" class="form-control" placeholder="教工名称" ng-model="teacherkey">
+        <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="searchTeacher(teacherkey,0,20)">搜索</button>
+        </span>
+    </div>
+</div>
+    <div class="col-md-2"></div>
+<div class="col-md-3">
+    <button ng-click="addTeacher()" style="width:auto;float:right;margin-right: 2px;" type="button" class="btn btn-labeled btn-info">
+               <span class="btn-label"><i class="fa fa-plus"></i>
+               </span>新增教职工</button>&nbsp;
+</div>
+</div>
+
+<table class="table table-striped">
+    <tr class="active">
+        <td><b>教工号</b></td>
+        <td><b>教师姓名</b></td>
+        <td><b>教工职称</b></td>
+        <td><b>教工类别</b></td>
+        <td><b>部门</b></td>
+        <td><b>状态</b></td>
+        <td><b>操作</b></td>
+    </tr>
+    <tr class="active" ng-repeat="teacher in teachercontent">
+        <td>{{teacher[0]}}</td>
+        <td>{{teacher[1]}}</td>
+        <td>{{teacher[2]}}</td>
+        <td>{{teacher[3]}}</td>
+        <td>{{teacher[4]}}</td>
+        <!--<td>{{teacher[5]}}</td>-->
+        <td>
+            <label style="float:left" class="switch switch-lg">
+                <input type="checkbox" ng-model="teacher[5]" ng-checked="teacher[5] == 1" ng-click="openTeachSwitch(teacher[0])" ng-true-value="1" ng-false-value="0" />
+                <span></span>
+            </label>
+            <span ng-if="teacher[5]" style="padding-left:10px;float:left;color: lawngreen;">启用</span>
+            <span ng-if="!teacher[5]" style="padding-left:10px;float:left;color: red">禁用</span>
+            <!--<label style="float:left" class="switch switch-lg">
+                <input ng-model="swing" type="checkbox" checked="checked" ng-init="swing = true" />
+                <span></span>
+            </label>
+            <span ng-if="swing" style="padding-left:10px;float:left;color: lawngreen;">启用</span>
+            <span ng-if="!swing" style="padding-left:10px;float:left;color: red">禁用</span>-->
+        </td>
+        <td>
+            <button type="button" class="btn btn-sm btn-warning" ng-click="modifyteacher(teacher[0])">
+                <em class="fa fa-edit"></em>
+            </button>
+        </td>
+    </tr>
+</table>
+<ul class="pagination pagination-sm">
+    <li ng-disabled="teacherArrays.first" ng-click="loadData(teacherArrays.number-1,teacherArrays.size)"><a href="javascript:void(0)">上一页</a></li>
+    <li><a href="javascript:void(0)">{{teacherArrays.number+1}}/{{teacherArrays.totalPages}}</a></li>
+    <li ng-disabled="studentArrays.last" ng-click="loadData(teacherArrays.number+1,teacherArrays.size)"><a href="javascript:void(0)">下一页</a></li>
+</ul>

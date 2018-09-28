@@ -1,0 +1,41 @@
+<h3>角色设置</h3>
+<div  >
+        <table class="table table-bordered table-hover bg-white">
+            <tr style="font-weight: bold">
+                <td style="width:15%">角色名称</td>
+                <td style="width:8%">操作</td>
+
+            </tr>
+            <tr ng-repeat="roler in rolers track by $index">
+                <td>
+                    <!-- editable username (text with validation)-->
+                    <span editable-text="roler.roleName" e-name="roleName" e-form="rowform" onbeforesave="table.checkName($data, roler.roleId)" e-required="">{{ roler.roleName || &apos;empty&apos; }}</span>
+                </td>
+                <td style="white-space: nowrap">
+                    <!-- form-->
+                    <form editable-form="" name="rowform" onbeforesave="saveRoler($data,roler.roleId)" ng-show="rowform.$visible" shown="table.inserted == user" class="form-buttons form-inline">
+
+                        <button type="submit" ng-disabled="rowform.$waiting" title="保存" class="btn btn-sm btn-info">
+                            <em class="fa fa-save"></em>
+                        </button>
+                        <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" title="取消" class="btn btn-sm btn-default">
+                            <em class="fa fa-times"></em>
+                        </button>
+                    </form>
+                    <div ng-show="!rowform.$visible" class="buttons">
+                        <button ng-click="rolerMenusetting(roler.roleId,roler.roleName)" title="添加角色菜单" class="btn btn-sm btn-success">
+                            <em class="fa fa-cog"></em>
+                        </button>
+                        <button ng-click="rowform.$show()" title="编辑" class="btn btn-sm btn-info">
+                            <em class="fa fa-pencil"></em>
+                        </button>
+                        <button ng-click="removeRoler($index,roler.roleId)" title="删除" class="btn btn-sm btn-danger">
+                            <em class="fa fa-trash"></em>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <button ng-click="addRoler()" class="btn btn-success">增加菜单</button>
+
+</div>

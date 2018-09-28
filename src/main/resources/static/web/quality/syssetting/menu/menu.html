@@ -1,0 +1,66 @@
+<style>
+.mydiv{
+    overflow-x: auto;
+}
+
+</style>
+<h3>菜单设置</h3>
+<div class="mydiv">
+        <table class="table table-bordered table-hover bg-white">
+            <tr style="font-weight: bold">
+                <td style="width:20%">菜单名称</td>
+                <td style="width:15%">类型</td>
+                <td style="width:15%">父类编码</td>
+                <td style="width:10%">菜单内容</td>
+                <td style="width:10%">菜单属性</td>
+                <td style="width:10%">状态</td>
+                <td style="width:30%">编辑</td>
+            </tr>
+            <tr ng-repeat="menu in menus track by $index">
+                <td>
+                    <!-- editable status (select-local)-->
+                    <span editable-text="menu.menuName" e-name="menu_name" e-form="rowform" onbeforesave="table.checkName($data, user.id)" e-required="">{{ menu.menuName || &apos;empty&apos; }}</span>
+                </td>
+                <td>
+                    <span editable-select="menu.menuType" e-name="menu_type" onshow="table.loadGroups()" e-form="rowform" e-ng-options="menutype.name as menutype.name for menutype in menuTypes">{{ menu.menuType }}</span>
+                </td>
+                <td>
+                    <span editable-select="menu.menuPid" e-name="menu_pid" e-form="rowform" e-ng-options="pid.id as pid.id for pid in pids">{{ menu.menuPid }}</span>
+                </td>
+                <td>
+                    <!-- editable username (text with validation)-->
+                    <span editable-text="menu.menuContent" e-name="menu_content" e-form="rowform" onbeforesave="table.checkName($data, user.id)" e-required="">{{ menu.menuContent || &apos;empty&apos; }}</span>
+                </td>
+                <td>
+                    <!-- editable username (text with validation)-->
+                    <span editable-text="menu.menuAttr" e-name="menu_attr" e-form="rowform" onbeforesave="table.checkName($data, user.id)" e-required="">{{ menu.menuAttr || &apos;empty&apos; }}</span>
+                </td>
+                <td style="text-align: center">
+                    <label class="switch">
+                        <input type="checkbox" ng-model="menu.menuStatus" ng-checked="menu.menuStatus == 1" ng-click="openSwitch(menu.menuId)" ng-true-value="1" ng-false-value="0" />
+                        <span></span>
+                    </label>
+                </td>
+                <td style="white-space: nowrap">
+                    <!-- form-->
+                    <form editable-form="" name="rowform" onbeforesave="saveMenu($data, menu.menuId)" ng-show="rowform.$visible" shown="table.inserted == menu" class="form-buttons form-inline">
+                        <button type="submit" ng-disabled="rowform.$waiting" title="保存" class="btn btn-sm btn-info">
+                            <em class="fa fa-save"></em>
+                        </button>
+                        <button type="button" ng-disabled="rowform.$waiting" ng-click="rowform.$cancel()" title="取消" class="btn btn-sm btn-default">
+                            <em class="fa fa-times"></em>
+                        </button>
+                    </form>
+                    <div ng-show="!rowform.$visible" class="buttons">
+                        <button ng-click="rowform.$show()" title="编辑" class="btn btn-sm btn-info">
+                            <em class="fa fa-pencil"></em>
+                        </button>
+                        <button ng-click="removeMenu($index,menu.menuId)" title="删除菜单" class="btn btn-sm btn-danger">
+                            <em class="fa fa-trash"></em>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        </table>
+        <button ng-click="addMenu()" class="btn btn-success">增加菜单</button>
+</div>

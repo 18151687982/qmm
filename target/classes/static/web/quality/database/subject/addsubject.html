@@ -1,0 +1,318 @@
+<div class="row" >
+        <div class="col-lg-12">
+            <div id="panelPortlet6" class="panel-info" style="margin-bottom: -3px;">
+                <em ng-click="cancel()" style="float: right;font-size: 20px;" class="fa fa-close " ></em>
+                <div class="panel-heading portlet-handler">新添/修改课程信息</div>
+                <div class="panel-default">
+                    <div class="panel-body">
+                        <form   form-wizard="" validate-steps="true" validate-form="" steps="4">
+                            <div class="form-wizard wizard-horizontal" >
+                                <!-- START wizard steps indicator-->
+                                <ol class="row">
+                                    <li ng-class="{'active':wizard.active(1)}" ng-click="wizard.go(1)" class="col-md-3">
+                                        <h4>填写课程基本信息</h4>
+                                        <small class="text-muted">步骤一</small>
+                                    </li>
+                                    <li ng-class="{'active':wizard.active(2)}" ng-click="wizard.go(2)" class="col-md-3">
+                                        <h4>选择授课教师</h4>
+                                        <small class="text-muted">步骤二</small>
+                                    </li>
+                                    <li ng-class="{'active':wizard.active(3)}" ng-click="wizard.go(3)" class="col-md-3">
+                                        <h4>选择授课班级</h4>
+                                        <small class="text-muted">步骤三</small>
+                                    </li>
+                                    <li ng-class="{'active':wizard.active(4)}" ng-click="wizard.go(4)" class="col-md-3">
+                                        <h4>选择授课节次</h4>
+                                        <small class="text-muted">步骤四</small>
+                                    </li>
+                                </ol>
+                                <!-- END wizard steps indicator-->
+                                <!-- START Wizard Step inputs -->
+                                <div id="step1" ng-show="wizard.active(1)">
+                                    <fieldset>
+                                        <legend></legend>
+                                        <!-- START row -->
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>课程代码</label>
+                                                    <div class="controls">
+                                                        <input ng-model="$parent.courseNo" type="text"  placeholder="例如:110042363"  class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>课程名称</label>
+                                                    <div class="controls">
+                                                        <input  ng-model="$parent.courseName" type="text"   placeholder="例如:计算机应用基础"  class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>上课人数</label>
+                                                    <div class="controls">
+                                                        <input ng-model="$parent.studentNumber" type="text"  placeholder="例如：36"  class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>承担部门</label>
+                                                    <select  ng-model="$parent.department" ng-options="department.depNo as department.depName for department in depatments" class="form-control" >
+                                                        <option value="">请选择部门</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row" style="margin-top: 20px;">
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label>课程类型</label>
+                                                    <select type="button"  class="form-control" data-toggle="dropdown"
+                                                             ng-model="$parent.courseType" ng-options="course.name as course.name for course in courseTypes">
+
+                                                        <option value="">课程类型</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label>课程属性</label>
+                                                    <div class="controls">
+                                                        <input ng-model="$parent.courseAttr" type="text" placeholder="例:公共基础课" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-2">
+                                                <div class="form-group">
+                                                    <label>课程课时</label>
+                                                    <div class="controls">
+                                                        <input ng-model="$parent.courseHours" type="text" placeholder="例如：32"  class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>课程周数</label>
+                                                    <div class="controls">
+                                                        <input ng-model="$parent.courseWeeks" type="text" placeholder="例如：1-6,(英文)8-9" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="form-group">
+                                                    <label>课程学期</label>
+                                                    <select   ng-model="$parent.courseTerm" ng-options="term.termNo as term.termName for term in courseTerms" class="form-control" >
+                                                        <option value="">请选择学期</option>
+                                                    </select>
+                                                   <!-- <select type="button"  class="form-control" data-toggle="dropdown" ng-model="$parent.courseTerm" >
+                                                        <option value="{{courseterm.termNo}}" ng-repeat="courseterm in courseTerms" >{{courseterm.termName}}</option>
+                                                    </select>-->
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <!-- END row -->
+
+                                    </fieldset>
+                                    <ul class="pager">
+                                        <li class="next"><a  ng-click="wizard.go(2)">下一步 <span>&rarr;</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- END Wizard Step inputs -->
+                                <!-- START Wizard Step inputs -->
+                                <div id="step2" ng-show="wizard.active(2)">
+                                    <fieldset>
+                                        <legend></legend>
+                                        <!-- START row -->
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label>授课教师</label>
+                                                    <div class="input-group">
+                                                        <input type="text" ng-model="$parent.teacherString" name="first-name" data-parsley-group="step2" placeholder="可搜索姓名、工号" required="required" class="form-control" />
+                                                        <span class="input-group-btn">
+                                                          <button ng-click="loadteacherData(0,3)" class="btn btn-primary" type="button">搜索</button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7" ng-if=(teachers.length!=0)>
+                                                    <label>已选教师</label><br/>
+                                                <div class="col-md-12">
+                                                    <span ng-repeat="teacher in teachers" class="label label-success"  style="font-size: 15px;margin: 5px;display: inline-block;">{{teacher.userLoginname}}--{{teacher.userName}} <em ng-click="removeteacher($index,teacher.userLoginname)" class="fa fa-close" ></em></span>
+                                            </div>
+                                            </div>
+                                        </div>
+                                        <legend style="margin-top: 20px"></legend>
+                                        <div class="row" ng-if=(teaArrays)>
+                                            <div ng-click="chooseTeacher(teacher.teacherName,teacher.teacherNo)"  ng-repeat="teacher in teaArrays.content" class=" panel-green col-md-4  col-sm-4" style="margin-top: 20px" >
+                                                <div  class="panel-heading">
+                                                    <div class="row">
+                                                        <div class="col-xs-3">
+                                                            <em  ) style="font-size: 25px">教师</em>
+                                                        </div>
+                                                        <div class="col-xs-9 text-right">
+                                                            <div style="font-size: 30px">{{teacher.teacherName}}</div>
+                                                            <p class="m0">工号：{{teacher.teacherNo}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 row">
+                                            <nav  aria-label="Page navigation" ng-if=(teaArrays)>
+                                                <ul class="pagination pagination-sm" style="float: right">
+                                                    <li ng-disabled="teaArrays.first" ng-click="loadteacherData(teaArrays.number-1,teaArrays.size)"><a href="javascript:void(0)">上一页</a></li>
+                                                    <li><a href="javascript:void(0)">{{teaArrays.number+1}}/{{teaArrays.totalPages}}</a></li>
+                                                    <li ng-disabled="teaArrays.last" ng-click="loadteacherData(teaArrays.number+1,teaArrays.size)"><a href="javascript:void(0)">下一页</a></li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                        <!-- END row -->
+                                    </fieldset>
+                                    <ul class="pager">
+                                        <li class="previous">
+                                            <a  ng-click="wizard.go(1)">
+                                                <span>&larr; 上一步</span>
+                                            </a>
+                                        </li>
+                                        <li class="next"><a  ng-click="wizard.go(3)">下一步 <span>&rarr;</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- END Wizard Step inputs -->
+                                <!-- START Wizard Step inputs -->
+                                <div id="step3" ng-show="wizard.active(3)">
+                                    <fieldset>
+                                        <legend></legend>
+                                        <!-- START row -->
+                                        <div class="row">
+                                            <div class="col-md-5">
+                                                <div class="form-group">
+                                                    <label>授课班级（可多选）</label>
+                                                    <div class="input-group">
+                                                        <input  ng-model="$parent.classString" type="text" name="first-name" data-parsley-group="step2" placeholder="可搜索班级名称、编号" required="required" class="form-control" />
+                                                        <span class="input-group-btn">
+                                                          <button ng-click="loadclassData(0,3)"  class="btn btn-primary" type="button">搜索</button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-7">
+                                                <div class="form-group" ng-if=(classes.length!=0)>
+                                                    <label>已选班级</label><br/>
+                                                    <div class="col-md-12">
+                                                        <span ng-repeat="class in classes" class="label label-success"  style="font-size: 15px;margin: 5px;display: inline-block;">{{class.classNo}}--{{class.className}} <em ng-click="removeclass($index,class.id)" class="fa fa-close" ></em></span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <legend style="margin-top: 20px"></legend>
+                                        <div class="row">
+                                            <div ng-click="chooseClass(class.className,class.classNo)" ng-repeat="class in classArrays.content"  class=" panel-green col-md-4  col-sm-4" style="margin-top: 20px" >
+                                                <div class="panel-heading">
+                                                    <div class="row">
+                                                        <div class="col-xs-3">
+                                                            <em  class="fa fa-spinner fa-2x" ></em>
+                                                        </div>
+                                                        <div class="col-xs-9 text-right">
+                                                            <div style="font-size: 30px">{{class.className}}</div>
+                                                            <p class="m0">编号：{{class.classNo}}</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12 row">
+                                            <nav  aria-label="Page navigation" ng-if=(classArrays)>
+                                                <ul class="pagination pagination-sm" style="float: right">
+                                                    <li ng-disabled="classArrays.first" ng-click="loadclassData(classArrays.number-1,classArrays.size)"><a href="javascript:void(0)">上一页</a></li>
+                                                    <li><a href="javascript:void(0)">{{classArrays.number+1}}/{{classArrays.totalPages}}</a></li>
+                                                    <li ng-disabled="classArrays.last" ng-click="loadclassData(classArrays.number+1,classArrays.size)"><a href="javascript:void(0)">下一页</a></li>
+                                                </ul>
+                                            </nav>
+                                        </div>
+                                        <!-- END row -->
+                                    </fieldset>
+                                    <ul class="pager">
+                                        <li class="previous">
+                                            <a  ng-click="wizard.go(2)">
+                                                <span>&larr; 上一步</span>
+                                            </a>
+                                        </li>
+                                        <li class="next"><a  ng-click="wizard.go(4)">下一步 <span>&rarr;</span></a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- END Wizard Step inputs -->
+                                <!-- START Wizard Step inputs -->
+                                <div id="step4" ng-show="wizard.active(4)">
+                                    <fieldset>
+                                        <legend></legend>
+                                        <!-- START row -->
+                                        <div class="row">
+                                            <div class="col-lg-12">
+                                                <!-- START panel-->
+                                                <div class="panel-default">
+                                                    <label>节次列表（可多选）</label>
+                                                        <!-- START table-responsive-->
+                                                        <div class="table-responsive">
+                                                            <table class="table table-striped table-bordered table-hover">
+                                                                <thead>
+                                                                <tr style="text-align: center">
+                                                                    <th>选择上课节次</th>
+                                                                    <th>周一</th>
+                                                                    <th>周二</th>
+                                                                    <th>周三</th>
+                                                                    <th>周四</th>
+                                                                    <th>周五</th>
+                                                                    <th>周六</th>
+                                                                    <th>周日</th>
+                                                                </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                <tr  ng-repeat="section in sections" >
+                                                                    <td ng-repeat="secone in section.day" ng-click="addplace(secone.name,secone.checked)">
+                                                                       <span data-ng-if="secone.mian==true">{{secone.name}}</span>
+                                                                        <span data-ng-if="secone.checked==true"><em class="fa fa-check"></em></span>
+                                                                    </td>
+                                                                </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                </div>
+                                                <div class="col-md-12" ng-if="locations.length!=0">
+                                                    <label>已选授课节次</label>
+                                                    <div class="col-md-12">
+                                                        <span ng-repeat="onelocation in locations" class="label label-success"  style="font-size: 15px;margin: 5px;display: inline-block;font-family: '微软雅黑'">{{onelocation.section}}--{{onelocation.location}} <em ng-click="removesection($index,onelocation.section)" class="fa fa-close" ></em></span>
+                                                    </div>
+                                                 </div>
+                                            <p style="text-align: center">
+                                                <button ng-click="submitCourse()" style="font-size: 15px;" type="button" class="btn btn-info btn-lg">提交课程</button>
+                                            </p>
+                                        </div>
+                                        <!-- END row -->
+                                            </div>
+                                    </fieldset>
+                                    <ul class="pager">
+                                        <li class="previous">
+                                            <a  ng-click="wizard.go(3)">
+                                                <span>&larr; 上一步</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </div>
+                                <!-- END Wizard Step inputs -->
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>

@@ -1,0 +1,43 @@
+
+<h3>用户角色配置</h3>
+<div class="row r1">
+        <div class="form-group col-lg-2 col-xs-4" style="margin-left: 15px;">
+            <input type="text"  class="form-control" placeholder="工号/姓名" ng-model="searchString" >
+        </div>
+        <button ng-click="loadData(0,8)" class="btn btn-info col-lg-1 col-md-2">搜索用户</button>
+        <span style="font-size: 15px;font-family: 微软雅黑;margin-left: 20px;" class="col-md-4 col-xs-12" data-ng-if=(currentid!=null)>已选用户：{{currentname}}  , 账号：{{currentid}}</span>
+</div>
+<div class="row r2">
+    <div class="col-lg-7 col-md-12" >
+
+    <div class="col-lg-12 col-md-12" >
+        <!-- START panel-->
+        <div ng-click="getRoler(user.userId,user.userName,user.userLoginname)" ng-repeat="user in userArrays.content" class=" panel-green col-md-6  col-sm-6" style="margin-top: 20px" >
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-xs-3">
+                        <em  ng-if=(user.userType=="教师") class="fa fa-mortar-board fa-3x"></em>
+                        <em  ng-if=(user.userType=="学生") class="fa fa-user fa-3x"></em>
+                    </div>
+                    <div class="col-xs-9 text-right">
+                        <div style="font-size: 30px">{{user.userName}}</div>
+                        <p class="m0">工号：{{user.userLoginname}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12">
+        <nav  aria-label="Page navigation" ng-if=(userArrays)>
+            <ul class="pagination pagination-sm" style="float: right">
+                <li ng-disabled="studentArrays.first" ng-click="loadData(userArrays.number-1,userArrays.size)"><a href="javascript:void(0)">上一页</a></li>
+                <li><a href="javascript:void(0)">{{userArrays.number+1}}/{{userArrays.totalPages}}</a></li>
+                <li ng-disabled="studentArrays.last" ng-click="loadData(userArrays.number+1,userArrays.size)"><a href="javascript:void(0)">下一页</a></li>
+            </ul>
+        </nav>
+        </div>
+    </div>
+    </div>
+    <div class="col-lg-4 col-md-12" style="margin-top: 30px;">
+        <button type="button" ng-click="roler.checked = !roler.checked;oksubRoler(roler.roleId)"  ng-class="{true:'btn-danger',false:'btn-default'}[roler.checked]"  ng-repeat="roler in rolersArrays"  class="btn btn-oval" style=" margin: 10px;">{{roler.roleName}}</button>
+</div>
+</div>

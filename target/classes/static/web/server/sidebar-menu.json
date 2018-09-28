@@ -1,0 +1,51 @@
+[{
+  "text": "系统菜单栏",
+  "heading": "true"
+},
+  {
+    "text": "督学中心",
+    "sref": "qm.tealecture",
+    "icon": "icon-mustache"
+  }
+,
+  {
+    "text": "教师中心",
+    "sref": "#",
+    "icon": "icon-eyeglass",
+    "submenu": [
+      {"text": "课堂考勤",       "sref": "qm.classattend"}
+    ]
+  },
+  {
+    "text": "学生中心",
+    "sref": "#",
+    "icon": "icon-graduation",
+    "submenu": [
+      {"text": "我的课程", "sref": "qm.stusubject"},
+      {"text": "参与评教",       "sref": "qm.stuevaluation"}
+    ]
+  },
+  {
+    "text": "基础数据",
+    "sref": "",
+    "icon": "icon-folder",
+    "submenu": [
+      {"text": "部门维护",       "sref": "qm.base_department"},
+      {"text": "学年学期维护",       "sref": "qm.termevaluation" },
+      {"text": "班级学生维护",       "sref": "qm.base_classes" },
+      {"text": "课程维护",       "sref": "qm.base_subject" },
+      {"text": "教工维护",       "sref": "qm.base_teacher" }
+    ]
+  },
+  {
+    "text": "系统设置",
+    "sref": "#",
+    "icon": "icon-settings",
+    "submenu": [
+      {
+        "text": "用户登录账户设置",
+        "sref": "qm.accountset"
+      }
+    ]
+  }
+]

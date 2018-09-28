@@ -1,0 +1,70 @@
+
+<h3>学生维护</h3>
+<div class="row">
+    <div class="col-md-2">
+        <select style="width:auto;float:left;" class="form-control" data-toggle="dropdown" ng-model="termNo" ng-change="termNoChanged(termNo)">
+            <option value="">请选择学年学期</option>
+            <option ng-repeat="term in terms" value="{{term.termNo}}">{{term.termPrintName}}</option>
+        </select>
+    </div>
+    <div class="col-md-3">
+        <div style="width:auto;float:left;" class="input-group">
+            <input type="text" class="form-control" placeholder="可输入学生姓名" ng-model="stukey">
+            <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="searchStudentByName(stukey)">搜索</button>
+        </span>
+        </div>
+    </div>
+    <div class="col-md-1"></div>
+    <div class="col-md-6">
+        <button style="width:auto;float:right;margin-right: 2px;" type="button" class="btn btn-labeled btn-success">
+               <span class="btn-label"><i class="icon-login"></i>
+               </span>导入</button>
+        <button ng-click="excelexportstudent()" style="width:auto;float:right;margin-right: 2px;" type="button" class="btn btn-labeled btn-success">
+               <span class="btn-label"><i class="icon-logout"></i>
+               </span>导出</button>
+        <button ng-click="addstudent()" style="width:auto;float:right;margin-right: 2px;" type="button" class="btn btn-labeled btn-info">
+               <span class="btn-label"><i class="fa fa-plus"></i>
+               </span>新增学生</button>
+    </div>
+</div>
+<div>
+    <table class="table table-striped">
+        <tr class="active">
+            <td><b>学号</b></td>
+            <td><b>姓名</b></td>
+            <td><b>手机号</b></td>
+            <td><b>专业</b></td>
+            <td><b>年级</b></td>
+            <td><b>班级</b></td>
+            <td><b>状态</b></td>
+            <td><b>操作</b></td>
+        </tr>
+        <tr class="active" ng-repeat="student in studentcontent">
+            <td>{{student[0]}}</td>
+            <td>{{student[1]}}</td>
+            <td>{{student[2]}}</td>
+            <td>{{student[4]}}</td>
+            <td>{{student[7]}}</td>
+            <td>{{student[5]}}</td>
+            <td>
+                <label style="float:left" class="switch switch-lg">
+                    <input ng-model="swing" type="checkbox" checked="checked" ng-init="swing = true" />
+                <span></span>
+                </label>
+                <span ng-if="swing" style="padding-left:10px;float:left;color: lawngreen;">启用</span>
+                <span ng-if="!swing" style="padding-left:10px;float:left;color: red">禁用</span>
+            </td>
+            <td>
+               <button ng-click="modifystudent(student[0])" type="button" class="btn btn-sm btn-warning">
+                <em class="fa fa-edit"></em>
+               </button>
+            </td>
+        </tr>
+    </table>
+    <ul class="pagination pagination-sm">
+        <li ng-disabled="studentArrays.first" ng-click="loadData(studentArrays.number-1,studentArrays.size)"><a href="javascript:void(0)">上一页</a></li>
+        <li><a href="javascript:void(0)">{{studentArrays.number+1}}/{{studentArrays.totalPages}}</a></li>
+        <li ng-disabled="studentArrays.last" ng-click="loadData(studentArrays.number+1,studentArrays.size)"><a href="javascript:void(0)">下一页</a></li>
+    </ul>
+</div>

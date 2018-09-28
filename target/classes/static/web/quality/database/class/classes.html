@@ -1,0 +1,60 @@
+
+<h3>班级学生维护</h3>
+<div class="row">
+    <div class="col-md-5">
+        <button ng-click="batch_classes()" style="width:auto;float:left;margin-right: 2px;" type="button" class="mb-sm btn btn-success">导入</button>&nbsp;
+        <select type="button" style="width:auto;float:left;" class="form-control" data-toggle="dropdown"
+                ng-init="selectedName = names[0]" ng-model="selectedName" ng-options="x for x in names" ng-change="classYearChanged(selectedName)">
+        </select>
+        <select style="width:auto;float:left;" class="form-control" data-toggle="dropdown" ng-model="depNo" ng-change="classdepNoChanged(depNo)">
+            <option value="">请选择部门</option>
+            <option ng-repeat="department in departments" value="{{department.depNo}}">{{department.depName}}</option>
+        </select>&nbsp;
+    </div>
+    <div class="col-md-3">
+        <div style="width:auto;float:left;" class="input-group">
+            <input type="text" class="form-control" placeholder="班级名称" ng-model="classkey">
+            <span class="input-group-btn">
+        <button class="btn btn-default" type="button" ng-click="searchClasses(classkey,0,20)">搜索</button>
+        </span>
+        </div>
+    </div>
+    <div class="col-md-3">
+    </div>
+</div>
+<div>
+    <table class="table table-striped">
+        <tr class="active">
+            <td><b>班级名称</b></td>
+            <td><b>班级人数</b></td>
+            <td><b>班主任</b></td>
+            <td><b>信息员</b></td>
+            <td><b>是否毕业班</b></td>
+            <td><b>专业</b></td>
+            <td><b>部门</b></td>
+            <td><b>操作</b></td>
+        </tr>
+        <tr class="active" ng-repeat="class in userArrays">
+            <td ng-click="findStudentByClassName(class[1],0,11)">{{class[1]}}</td>
+            <td>{{class[0]}}</td>
+            <td>{{class[4]}}</td>
+            <td>{{class[5]}}</td>
+            <td>
+                {{class[6]==1?'是':'否'}}
+            </td>
+            <td>{{class[3]}}</td>
+            <td>{{class[2]}}</td>
+            <td>
+                <button ng-click="modifyclasses(class[7])" type="button" class="btn btn-sm btn-warning">
+                    <em class="fa fa-edit"></em>
+                </button>
+            </td>
+        </tr>
+    </table>
+    <nav aria-label="...">
+        <ul class="pagination">
+            <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+            <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+        </ul>
+    </nav>
+</div>

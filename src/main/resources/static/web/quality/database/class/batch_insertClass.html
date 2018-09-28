@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h4 style="margin-left: 20px">
+    班级数据导入
+</h4>
+<div ng-controller="batchClassController as form" nv-file-drop="" uploader="form.uploader" filters="queueLimit, customFilter">
+    <!--<button style="float: left;margin-left:20px;" type="button" ng-click="batch_insertclass()" class="btn btn-danger">导入模板下载</button>-->
+    <!--<a href="../web/index.html#/quality/template/class.xls" download="class.xls" class="btn btn-danger">导入模板下载</a>-->
+<!--<button style="float: left;margin-left:20px;" type="button" ng-click="batch_insertclass()" download="class.xls" class="btn btn-danger">导入模板下载</button>-->
+<table align="center">
+        <caption>导入预览</caption>
+        <tr style="background-color: #ADDCE2;text-align:center;">
+            <td style="padding-right: 10px;"><b>班级名称</b></td>
+            <td style="padding-right: 10px;"><b>班级人数</b></td>
+            <td style="padding-right: 10px;"><b>班主任</b></td>
+            <td style="padding-right: 10px;"><b>信息员</b></td>
+            <td style="padding-right: 10px;"><b>是否毕业班</b></td>
+            <td style="padding-right: 15px;"><b>专业</b></td>
+            <td style="width:150px;"><b>部门</b></td>
+
+        <tr style="text-align:center;" ng-repeat="importCla in importClass">
+            <td>{{importCla.className}}</td>
+        </tr>
+            <td>{{importCla.classStuAmount}}</td>
+            <td>{{importCla.teacherName}}</td>
+            <td>{{importCla.stuName}}</td>
+            <td>
+                {{importCla.classIsover==1?'是':'否'}}
+            </td>
+            <td>{{importCla.majorName}}</td>
+            <td>{{importCla.depName}}</td>
+        </tr>
+    </table>
+</div>
+<div class="panel-footer text-center">
+    <button type="submit" ng-click="importExcel()" class="btn btn-info">导入</button>
+    <button ng-click="cancel()" type="submit" class="btn btn-info">取消</button>
+</div>
+
+</body>
+</html>
